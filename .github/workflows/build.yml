@@ -1,0 +1,59 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # manual trigger
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Extract version from Cargo.toml
+      - name: Extract version
+        id: cargo_version
+        run: |
+          VERSION=$(grep '^version' Cargo.toml | head -1 | sed 's/version = "//;s/"//')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Detected version: $VERSION"
+
+      # 3. Login to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 4. Set up QEMU
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      # 5. Set up Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 6. Build & Push multi-arch
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          platforms: |
+            linux/386,
+            linux/amd64,
+            linux/arm/v5,
+            linux/arm/v6,
+            linux/arm/v7,
+            linux/arm64/v8,
+            linux/ppc64le,
+            linux/riscv64,
+            linux/s390x
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/http-echo:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/http-echo:${{ env.VERSION }}
