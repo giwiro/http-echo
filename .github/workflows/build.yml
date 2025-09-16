@@ -38,7 +38,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # 6. Build & Push multi-arch
+      # 6. Show supported platforms
+      - name: Show supported platforms
+        run: docker buildx inspect --bootstrap
+
+      # 7. Build & Push multi-arch
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
