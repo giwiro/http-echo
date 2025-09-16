@@ -19,7 +19,7 @@ Logging is configurable, and the server can be containerized and deployed for so
 - **Configurable log level** (`off`, `error`, `warn`, `info`, `debug`, `trace`).  
 - **Customizable host and port**.  
 - **Built with Actix-Web** → high-performance async web server.  
-- **Lightweight Docker image with multi-architecture support** (`amd64`, `arm`, `riscv64`, etc.).  
+- **Lightweight Docker image with multi-architecture support** (`amd64`, `arm`, `ppc64le`, etc.).  
 
 ---
 
