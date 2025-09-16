@@ -7,7 +7,7 @@ It can run in two modes:
 - **echo** → echoes the request path, headers, method, scheme and host.  
 - **static** → always returns a fixed text.  
 
-Logging is configurable, and the server can be containerized and deployed for multiple architectures.
+Logging is configurable, and the server can be containerized and deployed for some architectures.
 
 ---
 
@@ -19,7 +19,7 @@ Logging is configurable, and the server can be containerized and deployed for mu
 - **Configurable log level** (`off`, `error`, `warn`, `info`, `debug`, `trace`).  
 - **Customizable host and port**.  
 - **Built with Actix-Web** → high-performance async web server.  
-- **Lightweight Docker image with multi-architecture support** (`amd64`, `arm`, `riscv64`, etc.).  
+- **Lightweight Docker image with multi-architecture support** (`amd64`, `arm64`).  
 
 ---
 
