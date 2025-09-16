@@ -49,14 +49,14 @@ cargo build --release
 
 ### Run
 ```bash
-http-echo --mode static --static-text "Hi from Rust!" --port 8080
+http-echo --mode static --static-text "Hi from Rust" --port 8080
 ```
 
 ## 🌍 Examples
 
 **Static mode:**
 ```bash
-http-echo --mode static --static-text "Hello World!" --port 8080
+http-echo --mode static --static-text "Hello World" --port 8080
 ```
 
 ```bash
@@ -93,6 +93,19 @@ Response:
   "scheme":"http"
 }
 ```
+
+
+## 🐳 Docker
+
+### Run
+```bash
+docker run -p 8080:8080 giwiro/http-echo:latest --mode static --static-text "Hello World" --port 8080
+```
+
+```bash
+docker run -p 8080:8080 giwiro/http-echo:latest --mode echo --port 8080
+```
+
 
 ---
 
